@@ -1,0 +1,23 @@
+[
+  {
+    "ts": "2018-01-23T12:40:13.767Z",
+    "level": "error",
+    "error": {
+      "stacktrace": [
+        "Error: \n      Please make sure you destination space have the same default locale as the source\n      default locale for source space : en-US\n\n      default locale for destination space: de-DE\n    ",
+        "assertDefaultLocale (/Users/kgarbaya/Desktop/workspace/contentful-import/lib/utils/validations.js:10:11)",
+        "/Users/kgarbaya/Desktop/workspace/contentful-import/lib/index.js:84:13",
+        "tryCatcher (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/util.js:16:23)",
+        "Promise._settlePromiseFromHandler (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/promise.js:512:31)",
+        "Promise._settlePromise (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/promise.js:569:18)",
+        "Promise._settlePromiseCtx (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/promise.js:606:10)",
+        "Async._drainQueue (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/async.js:138:12)",
+        "Async._drainQueues (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/async.js:143:10)",
+        "Immediate.Async.drainQueues (/Users/kgarbaya/Desktop/workspace/contentful-import/node_modules/bluebird/js/release/async.js:17:14)",
+        "runCallback (timers.js:781:20)",
+        "tryOnImmediate (timers.js:743:5)",
+        "processImmediate [as _immediateCallback] (timers.js:714:5)"
+      ]
+    }
+  }
+]
