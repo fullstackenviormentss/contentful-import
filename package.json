@@ -20,6 +20,7 @@
     "test:cover": "BABEL_ENV=test babel-node ./node_modules/istanbul/lib/cli.js cover test/runner-unit",
     "test:integration": "npm run build && BABEL_ENV=test babel-node ./test/runner-integration",
     "test:unit": "BABEL_ENV=test babel-node ./test/runner-unit",
+    "test:debug": "BABEL_ENV=test babel-node debug ./test/runner-unit",
     "test:simulate-ci": "trevor",
     "browser-coverage": "npm run test:cover && opener coverage/lcov-report/index.html",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
