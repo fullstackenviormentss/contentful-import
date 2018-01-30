@@ -13,7 +13,7 @@ test('payload validation should succeed when given and empty payload', (t) => {
 })
 
 test('payload validation should fail when given an invalid data', (t) => {
-  t.plan(3)
+  t.plan(4)
   const brokenAsset = {
     sys: {id: 'myAsset'},
     fields: {
@@ -33,6 +33,7 @@ test('payload validation should fail when given an invalid data', (t) => {
   } catch (e) {
     t.ok(e, 'it should throw an error')
     t.deepEquals(e.details.length, 1, 'it should have one error')
+    t.equals(e.details[0].entity, 'a title (myAsset)')
     t.deepEquals(e.details[0].path,
       ['assets', 0, 'fields', 'file'],
       'it should have the correct path to the file preperty'
