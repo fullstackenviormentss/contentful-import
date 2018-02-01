@@ -8,10 +8,19 @@ const managementToken = process.env.MANAGEMENT_TOKEN
 const orgId = process.env.ORG_ID
 const sampleSpaceFile = join(__dirname, 'sample-space.json')
 
+let spaceHandle
+
+jest.setTimeout(60000)
+
+afterAll(() => {
+  return spaceHandle.delete()
+})
+
 test('It should import a space properly when used as a lib', () => {
   const client = createClient({ accessToken: managementToken })
   return client.createSpace({name: 'temp contentful-import space'}, orgId)
     .then((space) => {
+      spaceHandle = space
       return runContentfulImport({
         spaceId: space.sys.id,
         managementToken,

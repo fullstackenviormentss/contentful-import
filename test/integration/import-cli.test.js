@@ -3,8 +3,6 @@ import { resolve } from 'path'
 import nixt from 'nixt'
 import { createClient } from 'contentful-management'
 
-jest.setTimeout(15000)
-
 const bin = resolve(__dirname, '..', '..', 'bin')
 const app = () => {
   return nixt({ newlines: true }).cwd(bin).base('./contentful-import').clone()
@@ -12,11 +10,19 @@ const app = () => {
 
 const managementToken = process.env.MANAGEMENT_TOKEN
 const orgId = process.env.ORG_ID
+let spaceHandle
+
+jest.setTimeout(60000)
+
+afterAll(() => {
+  return spaceHandle.delete()
+})
 
 test('It should import space properly when running as a cli', (done) => {
   const client = createClient({accessToken: managementToken})
   client.createSpace({name: 'temp contentful-import space'}, orgId)
     .then((space) => {
+      spaceHandle = space
       app()
         .run(` --space-id ${space.sys.id} --management-token ${managementToken} --content-file ${resolve(__dirname, 'sample-space.json')}`)
         .stdout(/The following entities are going to be imported/)
@@ -33,8 +39,7 @@ test('It should import space properly when running as a cli', (done) => {
         })
         .end((error) => {
           expect(error).toBe(undefined)
-          space.delete()
-            .then(done)
+          done()
         })
     })
 })
